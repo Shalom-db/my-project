@@ -15,10 +15,17 @@
 					var numPages = pdf.numPages;
 					for (var i = 0; i < numPages; i++) {
 						var page = pdf.pages[i];
-						var link = page.findText('www.manualslib.com');
-						if (link) {
-							link.text = 'www.manualsnow.com';
-						}
+						page.getTextContent().then(function(textContent) {
+							for (var j = 0; j < textContent.items.length; j++) {
+								if (textContent.items[j].str === 'www.manualslib.com') {
+									page.drawText('www.manualsnow.com', {
+										x: textContent.items[j].transform[4],
+										y: page.height - textContent.items[j].transform[5],
+										size: textContent.items[j].height
+									});
+								}
+							}
+						});
 					}
 					pdf.save('updated-pdf.pdf', function() {
 						alert('Link replaced and PDF saved!');
