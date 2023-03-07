@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>PDFKit Example</title>
-  <script src="file:///D:/AT/pdfkit-master/js/pdfkit.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<title>PDFKit Example</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfkit/0.11.0/pdfkit.min.js"></script>
 </head>
 <body>
 	<button id="replace-link">Replace Link</button>
 	<script>
 		$(document).ready(function() {
 			$('#replace-link').click(function() {
-				var url = 'http://example.com/path/to/your/pdf/file.pdf';
+				var url = 'https://drive.google.com/file/d/15fTX-QncRMh6vB-yqVTlvkL2QQ_hX9s6/view?usp=sharing';
 				PDFDocument.load(url, function(pdf) {
 					var numPages = pdf.numPages;
 					for (var i = 0; i < numPages; i++) {
@@ -30,4 +29,3 @@
 	</script>
 </body>
 </html>
-
