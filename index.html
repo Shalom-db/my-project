@@ -11,21 +11,14 @@
 		$(document).ready(function() {
 			$('#replace-link').click(function() {
 				var url = 'https://drive.google.com/uc?export=download&id=15fTX-QncRMh6vB-yqVTlvkL2QQ_hX9s6';
-				PDFDocument.load(url, function(pdf) {
+				PDFKit.Document.load(url, function(pdf) {
 					var numPages = pdf.numPages;
 					for (var i = 0; i < numPages; i++) {
 						var page = pdf.pages[i];
-						page.getTextContent().then(function(textContent) {
-							for (var j = 0; j < textContent.items.length; j++) {
-								if (textContent.items[j].str === 'www.manualslib.com') {
-									page.drawText('www.manualsnow.com', {
-										x: textContent.items[j].transform[4],
-										y: page.height - textContent.items[j].transform[5],
-										size: textContent.items[j].height
-									});
-								}
-							}
-						});
+						var link = page.findText('www.manualslib.com');
+						if (link) {
+							link.text = 'www.manualsnow.com';
+						}
 					}
 					pdf.save('updated-pdf.pdf', function() {
 						alert('Link replaced and PDF saved!');
