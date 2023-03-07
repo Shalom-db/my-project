@@ -10,7 +10,7 @@
 	<script>
 		$(document).ready(function() {
 			$('#replace-link').click(function() {
-				var url = 'https://drive.google.com/file/d/15fTX-QncRMh6vB-yqVTlvkL2QQ_hX9s6/view?usp=sharing';
+				var url = 'https://drive.google.com/uc?export=download&id=15fTX-QncRMh6vB-yqVTlvkL2QQ_hX9s6';
 				PDFDocument.load(url, function(pdf) {
 					var numPages = pdf.numPages;
 					for (var i = 0; i < numPages; i++) {
